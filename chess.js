@@ -1185,6 +1185,16 @@ var Chess = function(fen) {
       return moves;
     },
 
+    dests: function() {
+      var dests = {};
+      generate_moves().forEach(function(move) {
+        var m = [algebraic(move.from), algebraic(move.to)];
+        if (dests[m[0]]) dests[m[0]].push(m[1]);
+        else dests[m[0]] = [m[1]];
+      });
+      return dests;
+    },
+
     in_check: function() {
       return in_check();
     },
